@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Blog — Eregate Innovations Limited | Software Development & Construction Insights</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = { theme: { extend: { colors: { primary: '#0ea5a4', ink: '#0f172a' } } } }
+    </script>
+    <!-- SEO & Social Meta -->
+    <link rel="canonical" href="https://eregateinnovations.com/blog.html" />
+    <meta name="robots" content="index, follow" />
+    <meta name="description" content="Blog: Insights on software development, website design, app creation, tech business strategy, and construction management. Eregate Innovations Lagos." />
+    <meta name="keywords" content="software development blog, web development tips, tech insights, construction management, nigeria ,business technology, Lagos,nigeria" />
+    <meta property="og:title" content="Blog — Eregate Innovations Limited" />
+    <meta property="og:description" content="Expert insights on product development, project delivery, tech strategy, africa, and the intersection of digital and physical work." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://eregateinnovations.com/blog.html" />
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      "name": "Eregate Innovations Blog",
+      "url": "https://eregateinnovations.com/blog.html",
+      "description": "Insights and best practices on software development, web design, and construction management."
+    }
+    </script>
+  </head>
+  <body class="antialiased text-ink bg-slate-50">
+    <header class="bg-white sticky top-0 shadow-sm">
+      <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        <a href="index.html"><img src="assets/logo.svg" class="h-10" alt="Eregate Innovations Limited"/></a>
+        <nav class="hidden md:flex gap-6 text-sm">
+          <a href="index.html" class="text-slate-700">Home</a>
+          <a href="about.html" class="text-slate-700">About</a>
+          <a href="blog.html" class="text-ink font-semibold">Blog</a>
+          <a href="contact.html" class="text-slate-700">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-6 py-14">
+      <h1 class="text-3xl font-bold">Insights & Stories</h1>
+      <p class="mt-2 text-slate-600">Thoughts on product, project delivery and the intersection of digital and physical work.</p>
+
+      <div class="mt-6 max-w-md">
+        <input id="search" placeholder="Search posts by keyword..." class="w-full px-4 py-3 rounded-lg border" />
+      </div>
+
+      <div class="mt-8 grid md:grid-cols-3 gap-6" id="posts">
+        <article class="post-card bg-white rounded-2xl shadow overflow-hidden" data-title="Designing for construction teams">
+          <a href="blog/posts/post-1.html"><img src="./blog/blogImages/vecteezy_stylish-african-american-black-businessman-talks-on-his_1457258.jpg" class="h-45 w-full object-cover"/></a>
+          <div class="p-5">
+            <h3 class="font-semibold">Why Custom Software Drives Business Growth</h3>
+            <p class="text-sm text-slate-500 mt-2">Off-the-shelf software may work at the beginning but as your business grows, limitations start to appear.</p>
+          </div>
+        </article>
+        <article class="post-card bg-white rounded-2xl shadow overflow-hidden" data-title="Choosing the right tech stack for SMEs">
+          <a href="blog/posts/post-2.html"><img src="./blog/blogImages/vecteezy_ai-generated-diverse-professionals-engage-in-intense_40805804.jpg" class="h-45 w-full object-cover"/></a>
+          <div class="p-5">
+            <h3 class="font-semibold">Smart Development Approach: Build What Matters First</h3>
+            <p class="text-sm text-slate-500 mt-2">Successful software projects are not defined by how many features they include but by how effectively they solve real problems.</p>
+          </div>
+        </article>
+        <article class="post-card bg-white rounded-2xl shadow overflow-hidden" data-title="Why every business needs a website in 2026">
+          <a href="blog/posts/post-3.html"><img src="./blog/blogImages/vecteezy_confident-businessman-in-suit-giving-double-thumbs-up_72187716.jpg" class="h-45 w-full object-cover"/></a>
+          <div class="p-5">
+            <h3 class="font-semibold">Why every business needs a website in 2026</h3>
+            <p class="text-sm text-slate-500 mt-2">Impact, discoverability and the business case for an online presence.</p>
+          </div>
+        </article>
+      </div>
+
+      <script>
+        const input = document.getElementById('search');
+        const posts = Array.from(document.querySelectorAll('.post-card'));
+        input.addEventListener('input', (e) => {
+          const q = e.target.value.toLowerCase().trim();
+          posts.forEach(p => {
+            const title = p.getAttribute('data-title').toLowerCase();
+            if (!q || title.includes(q)) p.style.display = '';
+            else p.style.display = 'none';
+          });
+        });
+      </script>
+
+      <div class="mt-10" id="newsletter">
+        <div class="bg-gradient-to-r from-emerald-50 to-sky-50 p-8 rounded-2xl text-center shadow">
+          <h3 class="text-xl font-bold">Receive new posts by email</h3>
+          <form action="#" class="mt-4 sm:flex justify-center gap-3">
+            <input type="email" required placeholder="Email" class="px-4 py-3 rounded-lg border w-full sm:w-auto min-w-0" />
+            <button class="mt-3 sm:mt-0 bg-ink text-white px-5 py-3 rounded-lg">Subscribe</button>
+          </form>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
