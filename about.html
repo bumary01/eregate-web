@@ -8,6 +8,13 @@
     <script>
       tailwind.config = { theme: { extend: { colors: { primary: '#0ea5a4', ink: '#0f172a' } } } }
     </script>
+    <!-- EmailJS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+      (function(){
+        emailjs.init("iIhsXB0eYPHSerZen");
+      })();
+    </script>
     <!-- SEO & Social Meta -->
     <link rel="canonical" href="https://eregateinnovations.com/about.html" />
     <meta name="robots" content="index, follow" />
@@ -30,7 +37,7 @@
   <body class="antialiased text-ink bg-slate-50">
     <header class="bg-white sticky top-0 shadow-sm">
       <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        <a href="index.html"><img src="assets/logo.svg" class="h-10" alt="Eregate Innovations Limited"/></a>
+        <a href="index.html"><img src="assets/logo1mod.svg" class="h-10 w-auto" alt="Eregate Innovations Limited"/></a>
         <nav class="hidden md:flex gap-6 text-sm">
           <a href="index.html" class="text-slate-700">Home</a>
           <a href="about.html" class="text-ink font-semibold">About</a>
@@ -69,11 +76,11 @@
           <div class="bg-white p-6 rounded-2xl shadow text-center">
             <img src="./assets/1001734186.jpg" alt="Head of Engineering Adeyemi A." class="h-24 w-24 object-cover rounded-full mx-auto" />
             <h4 class="mt-4 font-semibold">Adeyemi A.</h4>
-            <div class="text-sm text-slate-500">Head of Engineering</div>
+            <div class="text-sm text-slate-500">Head of Software Engineering</div>
           </div>
           <div class="bg-white p-6 rounded-2xl shadow text-center">
-            <img src="../assets/black engineers.png" alt="Head of Construction Bayo M." class="h-24 w-24 object-cover rounded-full mx-auto" />
-            <h4 class="mt-4 font-semibold">Bayo M.</h4>
+            <img src="./assets/ Image Feb 18, 2026 at 11_11_37 AM.png" alt="Head of Construction Bayo M." class="h-24 w-24 object-cover rounded-full mx-auto" />
+            <h4 class="mt-4 font-semibold">Michael O.</h4>
             <div class="text-sm text-slate-500">Head of Construction</div>
           </div>
         </div>
@@ -83,12 +90,37 @@
         <div class="bg-gradient-to-r from-emerald-50 to-sky-50 p-8 rounded-2xl shadow text-center">
           <h3 class="text-xl font-bold">Join our newsletter</h3>
           <p class="mt-2 text-slate-600">Insights on the latest tech advancement and sprint planning — delivered monthly.</p>
-          <form action="#" class="mt-4 sm:flex justify-center gap-3">
-            <input type="email" required placeholder="your@email.com" class="px-4 py-3 rounded-lg border w-full sm:w-auto min-w-0" />
-            <button class="mt-3 sm:mt-0 bg-ink text-white px-5 py-3 rounded-lg">Subscribe</button>
+          <form id="newsletter-form" class="mt-4 sm:flex justify-center gap-3">
+            <input name="email" type="email" required placeholder="your@email.com" class="px-4 py-3 rounded-lg border w-full sm:w-auto min-w-0" />
+            <button type="submit" class="mt-3 sm:mt-0 bg-ink text-white px-5 py-3 rounded-lg">Subscribe</button>
           </form>
         </div>
       </section>
     </main>
+
+    <script>
+      // Newsletter form handler
+      document.getElementById('newsletter-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        const button = this.querySelector('button[type="submit"]');
+        const originalText = button.textContent;
+        button.textContent = 'Subscribing...';
+        button.disabled = true;
+        
+        emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_NEWSLETTER_TEMPLATE_ID', this)
+          .then(function() {
+            alert('Successfully subscribed to newsletter!');
+            document.getElementById('newsletter-form').reset();
+          }, function(error) {
+            alert('Failed to subscribe. Please try again or contact us directly.');
+            console.error('EmailJS error:', error);
+          })
+          .finally(function() {
+            button.textContent = originalText;
+            button.disabled = false;
+          });
+      });
+    </script>
   </body>
 </html>

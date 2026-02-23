@@ -56,6 +56,13 @@
         }
       }
     </script>
+    <!-- EmailJS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+      (function(){
+        emailjs.init("iIhsXB0eYPHSerZen");
+      })();
+    </script>
     <style>
       /* Staggered animation delays */
       .animate-stagger-1 { animation-delay: 0.1s; }
@@ -92,7 +99,7 @@
     <meta name="twitter:image" content="https://eregateinnovations.com/assets/markus-spiske-hvSr_CVecVI-unsplash.jpg" />
     <meta name="twitter:site" content="@eregateinnovations" />
     <meta name="theme-color" content="#0ea5a4" />
-    <link rel="apple-touch-icon" href="https://eregateinnovations.com/assets/logo.svg" />
+    <link rel="apple-touch-icon" href="assets/logo1mod.svg" />
 
     <script type="application/ld+json">
     {
@@ -101,7 +108,7 @@
       "name": "Eregate Innovations Limited",
       "alternateName": "Eregate Innovations",
       "url": "https://eregateinnovations.com",
-      "logo": "https://eregateinnovations.com/assets/logo.svg",
+      "logo": "assets/logo1mod.svg",
       "image": "https://eregateinnovations.com/assets/markus-spiske-hvSr_CVecVI-unsplash.jpg",
       "description": "Custom software development, web & app creation, tech business development, and construction solutions based in Lagos, Nigeria.",
       "sameAs": [
@@ -170,7 +177,7 @@
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
       "name": "Eregate Innovations Limited",
-      "image": "https://eregateinnovations.com/assets/logo.svg",
+      "image": "assets/logo1mod.svg",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "18, Falana Street",
@@ -199,7 +206,7 @@
     <header class="bg-white/60 backdrop-blur sticky top-0 z-40 shadow-sm">
       <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         <a href="index.html" class="flex items-center gap-4">
-          <img src="assets/logo.svg" alt="Eregate Innovations Limited" class="h-10 w-auto" />
+          <img src="assets/logo1mod.svg" alt="Eregate Innovations Limited" class="h-10 w-auto" />
         </a>
         <nav class="hidden md:flex items-center gap-6 text-sm">
           <a href="index.html" class="text-slate-700 hover:text-ink">Home</a>
@@ -336,9 +343,9 @@
         <div class="bg-gradient-to-r from-emerald-50 to-sky-50 rounded-2xl p-8 text-center shadow-lg animate-scaleIn opacity-0 animate-stagger-1">
           <h3 class="text-2xl font-bold animate-fadeInDown opacity-0 animate-stagger-2">Stay updated</h3>
           <p class="mt-2 text-slate-600 animate-fadeInUp opacity-0 animate-stagger-3">Subscribe to our newsletter for product updates, project spotlights and insights.</p>
-          <form class="mt-6 sm:flex justify-center gap-3 animate-fadeInUp opacity-0 animate-stagger-4" action="#" method="POST">
+          <form id="newsletter-form" class="mt-6 sm:flex justify-center gap-3 animate-fadeInUp opacity-0 animate-stagger-4">
             <input type="email" name="email" required placeholder="Your email" class="w-full sm:w-auto min-w-0 px-4 py-3 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary transition-all" />
-            <button class="mt-3 sm:mt-0 px-5 py-3 rounded-lg bg-ink text-white hover:bg-primary transition-colors hover-glow">Subscribe</button>
+            <button type="submit" class="mt-3 sm:mt-0 px-5 py-3 rounded-lg bg-ink text-white hover:bg-primary transition-colors hover-glow">Subscribe</button>
           </form>
           <p class="mt-3 text-xs text-slate-400">We respect your privacy. Unsubscribe anytime.</p>
         </div>
@@ -347,7 +354,7 @@
       <section class="max-w-7xl mx-auto px-6 py-10">
         <footer class="flex flex-col md:flex-row items-center justify-between gap-6 animate-fadeInUp opacity-0 animate-stagger-1">
           <div class="flex items-center gap-4">
-            <img src="assets/logo.svg" alt="logo" class="h-8" />
+            <img src="assets/logo1mod.svg" alt="logo" class="h-10" />
               <div>
                 <div class="text-sm text-slate-600">© 2026 Eregate Innovations Limited</div>
                 <div class="text-sm text-slate-600">Email: <a href="mailto:info@eregateinnovations.com" class="hover:underline">info@eregateinnovations.com</a> • Phone: <a href="tel:+2348177623814" class="hover:underline">+2348177623814</a></div>
@@ -361,5 +368,30 @@
       </section>
 
     </main>
+
+    <script>
+      // Newsletter form handler
+      document.getElementById('newsletter-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        const button = this.querySelector('button[type="submit"]');
+        const originalText = button.textContent;
+        button.textContent = 'Subscribing...';
+        button.disabled = true;
+        
+        emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_NEWSLETTER_TEMPLATE_ID', this)
+          .then(function() {
+            alert('Successfully subscribed to newsletter!');
+            document.getElementById('newsletter-form').reset();
+          }, function(error) {
+            alert('Failed to subscribe. Please try again or contact us directly.');
+            console.error('EmailJS error:', error);
+          })
+          .finally(function() {
+            button.textContent = originalText;
+            button.disabled = false;
+          });
+      });
+    </script>
   </body>
 </html>

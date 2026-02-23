@@ -8,6 +8,13 @@
     <script>
       tailwind.config = { theme: { extend: { colors: { primary: '#0ea5a4', ink: '#0f172a' } } } }
     </script>
+    <!-- EmailJS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+      (function(){
+        emailjs.init("iIhsXB0eYPHSerZen");
+      })();
+    </script>
     <!-- SEO & Social Meta -->
     <link rel="canonical" href="https://eregateinnovations.com/blog.html" />
     <meta name="robots" content="index, follow" />
@@ -31,7 +38,7 @@
   <body class="antialiased text-ink bg-slate-50">
     <header class="bg-white sticky top-0 shadow-sm">
       <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        <a href="index.html"><img src="assets/logo.svg" class="h-10" alt="Eregate Innovations Limited"/></a>
+        <a href="index.html"><img src="assets/logo1mod.svg" class="h-10 w-auto" alt="Eregate Innovations Limited"/></a>
         <nav class="hidden md:flex gap-6 text-sm">
           <a href="index.html" class="text-slate-700">Home</a>
           <a href="about.html" class="text-slate-700">About</a>
@@ -89,12 +96,37 @@
       <div class="mt-10" id="newsletter">
         <div class="bg-gradient-to-r from-emerald-50 to-sky-50 p-8 rounded-2xl text-center shadow">
           <h3 class="text-xl font-bold">Receive new posts by email</h3>
-          <form action="#" class="mt-4 sm:flex justify-center gap-3">
-            <input type="email" required placeholder="Email" class="px-4 py-3 rounded-lg border w-full sm:w-auto min-w-0" />
-            <button class="mt-3 sm:mt-0 bg-ink text-white px-5 py-3 rounded-lg">Subscribe</button>
+          <form id="newsletter-form" class="mt-4 sm:flex justify-center gap-3">
+            <input name="email" type="email" required placeholder="Email" class="px-4 py-3 rounded-lg border w-full sm:w-auto min-w-0" />
+            <button type="submit" class="mt-3 sm:mt-0 bg-ink text-white px-5 py-3 rounded-lg">Subscribe</button>
           </form>
         </div>
       </div>
     </main>
+
+    <script>
+      // Newsletter form handler
+      document.getElementById('newsletter-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        const button = this.querySelector('button[type="submit"]');
+        const originalText = button.textContent;
+        button.textContent = 'Subscribing...';
+        button.disabled = true;
+        
+        emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_NEWSLETTER_TEMPLATE_ID', this)
+          .then(function() {
+            alert('Successfully subscribed to newsletter!');
+            document.getElementById('newsletter-form').reset();
+          }, function(error) {
+            alert('Failed to subscribe. Please try again or contact us directly.');
+            console.error('EmailJS error:', error);
+          })
+          .finally(function() {
+            button.textContent = originalText;
+            button.disabled = false;
+          });
+      });
+    </script>
   </body>
 </html>
