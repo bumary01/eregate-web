@@ -1,3 +1,12 @@
----
 deployment:
-  - "*"
+ tasks:
+ - export DEPLOYPATH=/home/user/public_html/
+ - /bin/cp index.html $DEPLOYPATH
+ - /bin/cp about.html $DEPLOYPATH
+ - /bin/cp blog.html $DEPLOYPATH
+ - /bin/cp contact.html $DEPLOYPATH
+ - /bin/cp privacy.html $DEPLOYPATH
+ - /bin/cp robots.txt $DEPLOYPATH
+ - /bin/cp sitemap.xml $DEPLOYPATH
+ - /bin/cp -r assets/ $DEPLOYPATH
+ - /bin/cp -r blog/ $DEPLOYPATH
