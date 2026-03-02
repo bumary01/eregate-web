@@ -35,18 +35,24 @@
     </script>
   </head>
   <body class="antialiased text-ink bg-slate-50">
-    <header class="bg-white sticky top-0 shadow-sm">
+    <header class="bg-white sticky top-0 shadow-sm relative">
       <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        <a href="index.html"><img src="assets/logo1mod.svg" class="h-10 w-auto" alt="Eregate Innovations Limited"/></a>
-        <nav class="hidden md:flex gap-6 text-sm">
-          <a href="index.html" class="text-slate-700">Home</a>
-          <a href="about.html" class="text-ink font-semibold">About</a>
-          <a href="blog.html" class="text-slate-700">Blog</a>
-          <a href="contact.html" class="text-slate-700">Contact</a>
+        <a href="index.html" class="flex items-center gap-4"><img src="assets/logo1mod.svg" class="h-10 w-auto" alt="Eregate Innovations Limited"/></a>
+        <nav id="primary-nav" class="hidden md:flex flex-col md:flex-row absolute md:static top-full left-0 w-full md:w-auto bg-white md:bg-transparent shadow md:shadow-none gap-6 text-sm py-4 md:py-0 px-6 md:px-0">
+          <a href="index.html" class="text-slate-700 flex items-center justify-between md:justify-start">Home<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg></a>
+          <a href="about.html" class="text-ink font-semibold flex items-center justify-between md:justify-start">About<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg></a>
+          <a href="blog.html" class="text-slate-700 flex items-center justify-between md:justify-start">Blog<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg></a>
+          <a href="contact.html" class="text-slate-700 flex items-center justify-between md:justify-start">Contact</path></svg></a>
         </nav>
+        <div class="hidden md:block">
+          <a href="#newsletter" class="inline-flex items-center px-4 py-2 bg-primary text-white rounded-lg shadow hover:opacity-95">Join Newsletter</a>
+        </div>
+        <button class="md:hidden p-2 rounded-lg" aria-label="Open menu" aria-expanded="false">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
       </div>
     </header>
-    <main class="max-w-6xl mx-auto px-6 py-20">
+    <main class="max-w-6xl mx-auto px-6 py-14">
       <h1 class="text-4xl font-extrabold">About Eregate Innovations Limited</h1>
       <p class="mt-4 text-slate-600 max-w-2xl">We unify software craftsmanship and construction excellence. Our teams are experienced engineers, designers, and field experts who deliver outcomes that matter.</p>
 
@@ -122,5 +128,27 @@
           });
       });
     </script>
-  </body>
+      <script>
+      // mobile menu toggle
+      document.addEventListener('DOMContentLoaded', function() {
+        const btn = document.querySelector('button[aria-label="Open menu"]');
+        const nav = document.querySelector('nav#primary-nav');
+        if (btn && nav) {
+          btn.addEventListener('click', function() {
+            const expanded = this.getAttribute('aria-expanded') === 'true';
+            this.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+            nav.classList.toggle('hidden');
+          });
+          nav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+              if (window.innerWidth < 768) {
+                nav.classList.add('hidden');
+                btn.setAttribute('aria-expanded', 'false');
+              }
+            });
+          });
+        }
+      });
+    </script>
+</body>
 </html>
